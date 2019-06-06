@@ -1,0 +1,32 @@
+{
+    "name": "chunrongl/tqigou-rpc-service",
+    "description": "淘气购-laravel5.7-hprose2.0-service",
+    "type": "library",
+    "require": {
+        "php": ">=7.2.0",
+        "hprose/hprose": "v2.0.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chunrongl",
+            "email": "chunrongl12@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Chunrongl\\TqigouRpcService\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Chunrongl\\TqigouRpcService\\TqigouServiceProvider"
+            ],
+            "aliases": {
+                "TqigouRouter": "Chunrongl\\TqigouRpcService\\Facades\\RouteManage"
+            }
+        }
+    }
+}
