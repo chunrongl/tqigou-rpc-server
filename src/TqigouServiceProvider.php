@@ -9,10 +9,13 @@ class TqigouServiceProvider extends ServiceProvider
 {
 
     public function boot(){
-        $configPath = __DIR__ . '/config/tqigou-rpc-server.php';
+        $configPath = __DIR__ . '/Config/tqigou-rpc-server.php';
         $publishPath = config_path('tqigou-rpc-server.php');
-
         $this->publishes([$configPath => $publishPath], 'config');
+
+        $configRoutePath=__DIR__.'/Config/tqigou-rpc-route.php';
+        $publishRoutePath=config_path('tqigou-rpc-route.php');
+        $this->publishes([$configRoutePath=>$publishRoutePath],'config');
     }
 
     public function register(){
