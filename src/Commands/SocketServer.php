@@ -1,6 +1,6 @@
 <?php
 
-namespace Chunrongl\tqigouRpcService\Commands;
+namespace Chunrongl\TqigouRpcService\Commands;
 
 
 use Illuminate\Console\Command;
@@ -12,7 +12,7 @@ class SocketServer extends Command
      *
      * @var string
      */
-    protected $signature = 'tqigou:server';
+    protected $signature = 'tqigou:server:start';
 
     /**
      * The console command description.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chunrongl\tqigouRpcService\Routes;
+namespace Chunrongl\TqigouRpcService\Routes;
 
 
 class RouteManage
@@ -9,7 +9,7 @@ class RouteManage
      * 添加路由.
      *
      * @param string $accessName 访问名称
-     * @param string $path className@actionName
+     * @param string $path 'className@actionName'.
      *
      * @return $this
      */

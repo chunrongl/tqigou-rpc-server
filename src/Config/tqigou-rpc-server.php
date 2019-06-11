@@ -1,6 +1,7 @@
 <?php
 return array(
-    'listening_uris'=>array(
-        "123:80"
-    )
+    'uris'=>array(
+        'tcp://0.0.0.0:9502'
+    ),
+    'namespace'=>'App\\Http\\Controllers\\Api\\DataPanel',
 );

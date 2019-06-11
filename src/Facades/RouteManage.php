@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chunrongl
- * Date: 2019/6/6
- * Time: 下午5:22
- */
 
-namespace Chunrongl\tqigouRpcService\Facades;
+namespace Chunrongl\TqigouRpcService\Facades;
 
 
 use Illuminate\Support\Facades\Facade;

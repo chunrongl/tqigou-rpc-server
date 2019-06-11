@@ -1,7 +1,7 @@
 <?php
 namespace Chunrongl\TqigouRpcService;
 
-use Chunrongl\tqigouRpcService\Routes\RouteManage;
+use Chunrongl\TqigouRpcService\Routes\RouteManage;
 use Hprose\Socket\Server;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,13 +27,17 @@ class TqigouServiceProvider extends ServiceProvider
 
 
         $this->app->singleton('tqigou.server', function ($app) {
-            $server = new Server();
+            $server = new Server(null);
+            $server->uris=[];
+
+            $server->setErrorTypes(E_ALL);
+            $server->setDebugEnabled(true);
 
             $server->onSendError = function ($error, \stdClass $context) {
                 \Log::error($error);
             };
 
-            $uris = config('tqigou-rpc-server.listening_uris');
+            $uris = config('tqigou-rpc-server.uris');
 
             if (!is_array($uris)) {
                 throw new \Exception('配置监听地址格式有误', 500);
