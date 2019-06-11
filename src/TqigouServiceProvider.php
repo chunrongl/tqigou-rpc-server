@@ -1,6 +1,7 @@
 <?php
 namespace Chunrongl\TqigouRpcService;
 
+use Chunrongl\TqigouRpcService\Commands\SocketServer;
 use Chunrongl\TqigouRpcService\Routes\RouteManage;
 use Hprose\Socket\Server;
 use Illuminate\Support\ServiceProvider;
@@ -14,16 +15,21 @@ class TqigouServiceProvider extends ServiceProvider
         $this->publishes([$configPath => $publishPath], 'config');
 
         $configRoutePath=__DIR__.'/Config/tqigou-rpc-route.php';
-        $publishRoutePath=config_path('tqigou-rpc-route.php');
+        $publishRoutePath=base_path('routes/tqigou-rpc-route.php');
         $this->publishes([$configRoutePath=>$publishRoutePath],'config');
+
+        $this->loadRoutesFrom($publishRoutePath);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                SocketServer::class,
+            ]);
+        }
     }
 
     public function register(){
         $configPath = __DIR__ . '/config/tqigou-rpc-server.php';
         $this->mergeConfigFrom($configPath, 'tqigou-rpc-server');
-
-        $routePath = __DIR__ . '/config/tqigou-rpc-route.php';
-        $this->mergeConfigFrom($routePath, 'tqigou-rpc-route');
 
 
         $this->app->singleton('tqigou.server', function ($app) {
