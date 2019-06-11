@@ -18,7 +18,9 @@ class TqigouServiceProvider extends ServiceProvider
         $publishRoutePath=base_path('routes/tqigou-rpc-route.php');
         $this->publishes([$configRoutePath=>$publishRoutePath],'config');
 
-        $this->loadRoutesFrom($publishRoutePath);
+        if(file_exists($publishRoutePath)) {
+            $this->loadRoutesFrom($publishRoutePath);
+        }
 
         if ($this->app->runningInConsole()) {
             $this->commands([
