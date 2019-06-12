@@ -3,6 +3,7 @@ namespace Chunrongl\TqigouRpcService;
 
 use Chunrongl\TqigouRpcService\Commands\SocketServer;
 use Chunrongl\TqigouRpcService\Routes\RouteManage;
+use Chunrongl\TqigouRpcService\Services\Socket;
 use Hprose\Socket\Server;
 use Illuminate\Support\ServiceProvider;
 
@@ -39,26 +40,7 @@ class TqigouServiceProvider extends ServiceProvider
 
 
         $this->app->singleton('tqigou.server', function ($app) {
-            $server = new Server(null);
-            $server->uris=[];
-
-            $server->setErrorTypes(E_ALL);
-            $server->setDebugEnabled(true);
-
-            $server->onSendError = function ($error, \stdClass $context) {
-                \Log::error($error);
-            };
-
-            $uris = config('tqigou-rpc-server.uris');
-
-            if (!is_array($uris)) {
-                throw new \Exception('配置监听地址格式有误', 500);
-            }
-
-            // 添加监听地址
-            array_map(function ($uri) use ($server) {
-                $server->addListener($uri);
-            }, $uris);
+            $server=(new Socket())->register();
 
             return $server;
         });
