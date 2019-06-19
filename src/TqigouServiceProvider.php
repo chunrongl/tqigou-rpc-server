@@ -35,7 +35,7 @@ class TqigouServiceProvider extends ServiceProvider
     }
 
     public function register(){
-        $configPath = __DIR__ . '/config/tqigou-rpc-server.php';
+        $configPath = __DIR__ . '/Config/tqigou-rpc-server.php';
         $this->mergeConfigFrom($configPath, 'tqigou-rpc-server');
 
 
