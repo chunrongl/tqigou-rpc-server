@@ -1,7 +1,6 @@
 <?php
 return array(
-    'uris'=>array(
-        'tcp://0.0.0.0:9502'
-    ),
-    'namespace'=>'App\\Http\\Controllers\\Api\\DataPanel',
+    'uris'=>json_decode(env('TQIGOU_SERVICE_LISTEN_URIS','["tcp:\/\/127.0.0.1:1122"]')),
+
+    'namespace'=>'App\\Http\\Controllers',
 );
